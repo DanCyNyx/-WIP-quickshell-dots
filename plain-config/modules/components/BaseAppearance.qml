@@ -19,7 +19,7 @@ Singleton {
     property string baseoutline: '#201f1c'
 
     // Color of inactive workspaces. Default: '#95916d'
-    property string baseworkspace: '#95916d'
+    property string baseworkspace: '#7a7659'
 
     // Fontsize of text. Default: 10 + 0.25
     property real basefontsize: (10 + 0.25)

@@ -28,10 +28,29 @@ Scope {
                 
             }
             Rectangle {
+                id:panelRect
                 anchors.fill: parent
                 radius: 0
                 color: Appearance.maincolor
                 opacity: Appearance.mainopacity
+            }
+            ColumnLayout{
+                id: topcolumn
+                anchors.top: parent.top
+                //anchors.horizontalCenter: panelRect.horizontalCenter
+                opacity: Appearance.mainTextOpacity
+                TempWorkspace {
+                    // Values supplied to TempWorkspace Widget
+                    listorient: ListView.Vertical
+                    rectrad: itemwidth * 0.5
+                    itemheight: itemwidth // - 2 // 20 with text
+                    itemwidth: Appearance.mainfontsize * 1.1
+                    // Layout vars to align Widget
+                    // Layout.leftMargin: 9.8
+                    Layout.topMargin: 10
+                    Layout.maximumHeight: itemheight*20
+                    Layout.alignment: Qt.AlignHCenter
+                }
             }
             ColumnLayout {
                 id: middlecolumn
@@ -48,14 +67,12 @@ Scope {
                         axis{x: 0; y: 0; z: 1}
                         origin.x: width 
                         origin.y: height
-                    }
-                    font.pointSize: Appearance.mainfontsize
-                    wrapMode: Text.Wrap
-                    color: Appearance.maintext */
+                    } */
                     // transform: Rotation {origin.x: {column.width/2} origin.y: {column.height/2} angle: 270}
                     timetext: VertTime.time
                     datetext: VertTime.date
-                    //root.font.pointSize: Appearance.mainfontsize + 1.5
+                    fontsize: Appearance.mainfontsize + 1.5
+                    // Layout vars
                     Layout.minimumWidth: 16
                     Layout.maximumWidth: 30
                     Layout.alignment: Qt.AlignHCenter 
@@ -67,12 +84,14 @@ Scope {
             }
             ColumnLayout {
                 id: bottomcolumn
-                anchors.horizontalCenter: parent.horizontalCenter
-                //anchors.verticalCenter: parent.verticalCenter
-                anchors.bottom: parent.bottom
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    bottom: parent.bottom
+                    bottomMargin: parent.height/30
+                    // verticalCenter: parent.verticalCenter
+                }
                 spacing: parent.height/250
                 opacity: Appearance.mainTextOpacity
-                anchors.bottomMargin: parent.height/30
                 VertBatteryWidget{
                     implicitWidth: screen.width/10
                     implicitHeight: screen.height/10

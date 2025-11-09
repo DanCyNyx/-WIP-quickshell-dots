@@ -22,16 +22,19 @@ Singleton {
     ///////////
     property real mainfontsize: BaseAppearance.basefontsize
     property string mainfontfamily: BaseAppearance.basefontfamily
+    //////////////////////
+    // Folder for theme //
+    //////////////////////
+    property string filename: 'BaseAppearance'
     /////////////
     // Opacity //
     /////////////
     property real mainopacity: BaseAppearance.baseopacity
     property real mainTextOpacity: BaseAppearance.baseTextopacity
-
+    
     function playSystemSound(soundName) {
         BaseAppearance.playSystemSound(soundName)
     }
-    
 }
 
 

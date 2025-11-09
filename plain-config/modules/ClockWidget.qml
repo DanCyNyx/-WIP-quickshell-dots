@@ -11,19 +11,12 @@ Item {
     property string timetext: Time.time
     property string datetext: Time.date
     property real timewidth: 30
+    property real fontsize: Appearance.mainfontsize
+    property bool help: true
     id: root
     // timer to change time back to time since 
     // for some reason the button forces it to stay the same
     // even if time changes
-    Timer {
-        interval: 100
-        repeat: true
-        running: true
-        onTriggered: {
-            if (tex.text !== timetext && tex.text!== datetext)
-            tex.text = timetext
-        }
-    }
     RoundButton {
         anchors.centerIn: tex
         anchors.fill: tex.content
@@ -34,31 +27,27 @@ Item {
         flat: true
         opacity: 0.25
         onClicked: {
-            if (tex.text == timetext)
-                tex.text = datetext
-            else
-                tex.text = timetext
-            
+            tex.text = help ? Qt.binding(function(){return datetext}) : Qt.binding(function(){return timetext})
+            help = !help
+            // if (tex.text == timetext)
+            //     tex.text = Qt.binding(function(){return datetext})
+            // else
+            //     tex.text = tex.text = Qt.binding(function(){return timetext})
         }
     }
-
     Text {
         id: tex
-        // we no longer need time as an input
         //anchors.horizontalCenter: parent.horizontalCenter
         anchors.centerIn: parent
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        // directly access the time property from the Time singleton
         text: timetext
         font.family:Appearance.mainfontfamily
-        font.pointSize: Appearance.mainfontsize
+        font.pointSize: fontsize
         wrapMode: Text.Wrap
         width: timewidth
-        
         color: Appearance.maintext
         renderType: Text.NativeRendering
         font.hintingPreference: Font.PreferFullHinting
-        //color: "#333333"
     }
 }

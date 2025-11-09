@@ -53,12 +53,15 @@ RowLayout {
             id: battbar
             implicitHeight: battIcon.height - battIcon.height/1.285
             // Battery.percentage * conversion for icon width to bar max width
-            implicitWidth: (battIcon.width/1.8) * Battery.percentage 
-            anchors.left: battIcon.left
-            anchors.top: battIcon.top
-            // Margins to prevent bar from going beyond icon area
-            anchors.topMargin: battIcon.height / 2.58
-            anchors.leftMargin: battIcon.width / 5.6 
+            implicitWidth: (battIcon.width/1.8) * Battery.percentage
+            anchors {
+                left: battIcon.left
+                top: battIcon.top
+                // Margins to prevent bar from going beyond icon area
+                topMargin: battIcon.height / 2.58
+                leftMargin: battIcon.width / 5.6 
+            }
+            
             color: Appearance.maintext
             radius: Appearance.mainfontsize / 9
         }
